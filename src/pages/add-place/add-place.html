@@ -1,0 +1,80 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Agregar un lugar</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-list>
+      <ion-item>
+        <ion-label>Titulo</ion-label>
+        <ion-input type="text" placeholder="Una bonita iglesia..."
+        name="title" ngModel required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Descripción</ion-label>
+        <ion-textarea placeholder="buen lugar para vacaciones de verano"
+                      name="description" ngModel required></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button block outline type="button" icon-left (click)="onLocate()">
+            <ion-icon name="locate"></ion-icon>
+            Ubicación automática
+          </button>
+
+          <button ion-button block outline type="button" icon-left (click)="onOpenMap()">
+            <ion-icon name="map"></ion-icon>
+            Seleccionar en el Mapa
+          </button>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="locationIsSet">
+        <ion-col>
+          <p>Lugar seleccionado:</p>
+          <agm-map [latitude]="location.lat" [longitude]="location.lng" [zoom]="16">
+            <agm-marker [latitude]="location.lat" [longitude]="location.lng"></agm-marker>
+          </agm-map>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col text-center>
+          <h5>¡Haz una foto!</h5>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-left block outline type="button" (click)="onTakePhoto()">
+            <ion-icon name="camera"></ion-icon>
+            Abrir Cámara
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row text-center *ngIf="imageUrl != ''">
+        <ion-col>
+          <img [src]="imageUrl" style="border: black solid 1px;">
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <button ion-button color="secondary" block type="submit" [disabled]="!f.valid || !locationIsSet || imageUrl == null">
+            Agregar este lugar
+          </button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+  </form>
+</ion-content>
