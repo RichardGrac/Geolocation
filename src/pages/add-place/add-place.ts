@@ -12,7 +12,7 @@ import {NgForm} from "@angular/forms";
 import {SetLocationPage} from "../set-location/set-location";
 import {Location} from "../../models/location";
 import { Geolocation } from '@ionic-native/geolocation';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';
 import {PlacesService} from "../../services/PlacesService";
 import {Entry, File, FileError} from '@ionic-native/file';
 // More about File: https://ionicframework.com/docs/native/file/

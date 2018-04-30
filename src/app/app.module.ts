@@ -15,14 +15,17 @@ import { Camera } from '@ionic-native/camera';
 import {PlacesService} from "../services/PlacesService";
 import { File } from '@ionic-native/file';
 import {IonicStorageModule} from "@ionic/storage";
+import {AddPlacePageModule} from "../pages/add-place/add-place.module";
+import {PlacePageModule} from "../pages/place/place.module";
+import {SetLocationPageModule} from "../pages/set-location/set-location.module";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    AddPlacePage,
-    PlacePage,
-    SetLocationPage
+    // AddPlacePage,
+    // PlacePage,
+    // SetLocationPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,10 @@ import {IonicStorageModule} from "@ionic/storage";
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA-R6RzsDHsr2Dc60-qEOebEEY_3ekZYEM'
     }),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AddPlacePageModule,
+    PlacePageModule,
+    SetLocationPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
