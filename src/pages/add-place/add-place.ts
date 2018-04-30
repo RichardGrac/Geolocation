@@ -12,7 +12,7 @@ import {NgForm} from "@angular/forms";
 import {SetLocationPage} from "../set-location/set-location";
 import {Location} from "../../models/location";
 import { Geolocation } from '@ionic-native/geolocation';
-import { Camera } from '@ionic-native/camera';
+import {Camera, CameraOptions} from '@ionic-native/camera';
 import {PlacesService} from "../../services/PlacesService";
 import {Entry, File, FileError} from '@ionic-native/file';
 // More about File: https://ionicframework.com/docs/native/file/
@@ -170,56 +170,31 @@ export class AddPlacePage {
   // }
 
   onTakePhoto() {
-    this.camera.getPicture({
-      encodingType: this.camera.EncodingType.JPEG,
-      correctOrientation: true
-    })
-      .then(
-        imageData => {
-          const currentName = imageData.replace(/^.*[\\\/]/, '');
-          const path = imageData.replace(/[^\/]*$/, '');
-          const newFileName = new Date().getUTCMilliseconds() + '.jpg';
-          this.file.moveFile(path, currentName, this.file.dataDirectory, newFileName)
-            .then(
-              (data: Entry) => {
-                this.imageUrl = data.nativeURL;
-                console.log('data.nativeURL: ' + this.imageUrl);
-                this.camera.cleanup();
-                // File.removeFile(path, currentName);
-              }
-            )
-            .catch(
-              (err: FileError) => {
-                this.imageUrl = '';
-                const toast = this.toastCtrl.create({
-                  message: 'Could not save the image. Please try again',
-                  duration: 2500
-                });
-                toast.present();
-                this.camera.cleanup();
-              }
-            );
-          this.imageUrl = imageData;
-          console.log('this.imageUrl: ' + this.imageUrl);
-        }
-      )
-      .catch(
-        err => {
-          const toast = this.toastCtrl.create({
-            message: 'Could not take the image. Please try again',
-            duration: 2500
-          });
-          toast.present();
-        }
-      );
+    this.platform.ready().then(() => {
+      const options: CameraOptions = {
+        quality: 100,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      };
+
+      this.camera.getPicture(options).then((imageData) => {
+        // imageData is either a base64 encoded string or a file URI
+        // If it's base64:
+        this.imageUrl = 'data:image/jpeg;base64,' + imageData;
+      }, (err) => {
+        // Handle error
+        console.log('error getting picture: '+ err);
+      });
+    });
   }
 
-  detectImageData(imageData: any){
+  /*detectImageData(imageData: any){
     //get photo from the camera based on platform type
     if (this.platform.is('ios')){
       return normalizeURL(imageData);
     }else{
       return "data:image/jpeg;base64," + imageData;
     }
-  }
+  }*/
 }
