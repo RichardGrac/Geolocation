@@ -14,7 +14,8 @@ import {Location} from "../../models/location";
 import { Geolocation } from '@ionic-native/geolocation';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import {PlacesService} from "../../services/PlacesService";
-import {Entry, File, FileError} from '@ionic-native/file';
+import {File} from '@ionic-native/file';
+// import {Entry, File, FileError} from '@ionic-native/file';
 // More about File: https://ionicframework.com/docs/native/file/
 import { normalizeURL } from 'ionic-angular';
 
