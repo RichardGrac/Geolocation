@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+<widget id="richard.grac.ionic.app04" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Lugares</name>
+    <description>Guarda tus lugares favoritos de donde hayas estado. Posicionalos, tomales una foto, dales un nombre y
+      descripción para que siempre los tengas presente en tus lugares que haz visitado.</description>
+    <author email="richard_grac@hotmail.com" href="https://www.facebook.com/Richard.GarciaN">Richard Grac</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -87,8 +88,8 @@
     <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
         <string>We want your location! Best regards NSA</string>
     </edit-config>
-    <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
-      <string>need camera access to take pictures</string>
+    <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
+        <string>need camera access to take pictures</string>
     </edit-config>
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
