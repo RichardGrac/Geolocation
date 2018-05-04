@@ -2,14 +2,15 @@ import {Place} from "../models/Place";
 import {Location} from "../models/location";
 import { Storage } from "@ionic/storage";
 import {Injectable} from "@angular/core";
-import { File } from "@ionic-native/file";
+// import { File } from "@ionic-native/file";
 
 @Injectable()
 export class PlacesService {
   private places: Place[] = [];
 
-  constructor(private storage: Storage,
-              private file: File){}
+  constructor(private storage: Storage
+              // private file: File
+  ){}
 
   addPlace(title: string, description: string, location: Location, imageUrl: string) {
     const place = new Place(title, description, location, imageUrl);
@@ -45,13 +46,13 @@ export class PlacesService {
   }
 
   deletePlace(index: number){
-    const place = this.places[index];
+    // const place = this.places[index];
     this.places.splice(index, 1);
     // This will Override the 'Places' Data Key
     this.storage.set('places', this.places)
       .then(
         () => {
-          this.removeFile(place);
+          // this.removeFile(place);
           console.log('Lugar removido')
         }
       )
@@ -66,18 +67,18 @@ export class PlacesService {
   /*
   * This method will delete the corresponding Image saved in the Device.
   * */
-  private removeFile(place: Place){
-    const currentName = place.imagePath.replace(/^.*[\\\/]/, '');
-    console.log('currentName will be deleted: ' + currentName);
-    this.file.removeFile(this.file.dataDirectory, currentName)
-      .then(
-        () => console.log('Imagen removida')
-      )
-      .catch(
-        () => {
-          console.log('No se pudo remover la imagen');
-          this.addPlace(place.title, place.description, place.location, place.imagePath);
-        }
-      );
-  }
+  // private removeFile(place: Place){
+  //   const currentName = place.imagePath.replace(/^.*[\\\/]/, '');
+  //   console.log('currentName will be deleted: ' + currentName);
+  //   this.file.removeFile(this.file.dataDirectory, currentName)
+  //     .then(
+  //       () => console.log('Imagen removida')
+  //     )
+  //     .catch(
+  //       () => {
+  //         console.log('No se pudo remover la imagen');
+  //         this.addPlace(place.title, place.description, place.location, place.imagePath);
+  //       }
+  //     );
+  // }
 }

@@ -20,6 +20,7 @@ export class HomePage implements OnInit{
   }
 
   ionViewWillEnter(){
+    console.log('ionViewWillEnter home.ts');
     this.places = this.placesService.loadPlaces();
   }
 

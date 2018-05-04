@@ -18,7 +18,7 @@ export class PlacePage {
               private viewCtrl: ViewController,
               private placesService: PlacesService) {
     this.place = this.navParams.get('place');
-    console.log('place.path: ' + this.place.imagePath);
+    // console.log('place.path: ' + this.place.imagePath);
     this.index = this.navParams.get('index');
   }
 

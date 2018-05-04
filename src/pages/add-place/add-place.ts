@@ -14,10 +14,10 @@ import {Location} from "../../models/location";
 import { Geolocation } from '@ionic-native/geolocation';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import {PlacesService} from "../../services/PlacesService";
-import {File} from '@ionic-native/file';
+// import {File} from '@ionic-native/file';
 // import {Entry, File, FileError} from '@ionic-native/file';
 // More about File: https://ionicframework.com/docs/native/file/
-import { normalizeURL } from 'ionic-angular';
+// import { normalizeURL } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -40,7 +40,8 @@ export class AddPlacePage {
               private toastCtrl: ToastController,
               private camera: Camera,
               private placesServices: PlacesService, private platform: Platform,
-              private file: File) {
+              // private file: File
+  ) {
   }
 
   onSubmit(form: NgForm){
